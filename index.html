@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="EUSA Venture Studio - We co-build investor-ready startups across the US & Europe.">
+  <meta property="og:title" content="EUSA Venture Studio">
+  <meta property="og:description" content="We co-build investor-ready startups across the US & Europe.">
   <title>EUSA Venture Studio</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
   <!-- Bootstrap 5 CSS -->
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -17,7 +21,7 @@
     <div class="container">
         <!-- LOGO -->
         <a class="navbar-brand d-flex align-items-center" href="#hero">
-        <img src="assets/img/newlogo.png" alt="EUSA Logo" height="32" class="me-2">
+        <img src="assets/img/favicon.png" alt="EUSA Logo" height="32" class="me-2">
         <span class="d-none d-sm-inline">EUSA</span>
         </a>
 
@@ -53,7 +57,7 @@
   <section id="hero" class="hero-section fade-in">
     <div class="container">
       <div class="row align-items-center g-5">
-        <div class="col-lg-6">
+        <div class="col-lg-6 text-center text-lg-start">
           <div class="hero-badge mb-3 fw-bold text-primary">
             CO-FOUND A GLOBAL STARTUP WITH EUSA
           </div>
@@ -68,13 +72,13 @@
             Based in <strong>Miami</strong> & <strong>Barcelona</strong> · Powered by Europe's top startup minds.
           </p>
           <div class="d-flex flex-wrap gap-3">
-            <a href="#contact" class="btn btn-outline-primary ">Apply for the Sprint</a>
+            <a href="#contact" class="btn btn-primary">Apply for the Sprint</a>
             <a href="#how-we-help" class="btn btn-outline-light">How we help</a>
           </div>
         </div>
         <div class="col-lg-6">
           <!-- Aquí podrías poner una imagen/ilustración -->
-          <div class="card bg-soft border-0 rounded-4 p-4">
+          <div class="card bg-soft border-0 rounded-4 p-4 fade-right">
             <p class="mb-2 text-sm">
               <span class="badge bg-secondary me-2">The challenge</span>
               85% of early-stage startups never raise their next round.
@@ -370,7 +374,7 @@
     </div>
   </section>
 
-  <!-- HOW WE WORK + CAROUSEL -->
+  <!-- HOW WE WORK + 3 CARDS -->
   <section id="how-we-work" class="py-5">
     <div class="container">
       <div class="row mb-4">
@@ -384,82 +388,69 @@
         </div>
       </div>
 
-      <!-- Carousel with 5 items (más de 3 imágenes) -->
-      <div id="howWeWorkCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#howWeWorkCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#howWeWorkCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#howWeWorkCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#howWeWorkCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#howWeWorkCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <!-- HOW WE WORK CARDS -->
+      <div class="row g-4">
+        <!-- Card 1: imagen izquierda, texto derecha -->
+        <div class="col-12">
+          <div class="card mb-4 shadow-sm how-card fade-left">
+            <div class="row g-0 align-items-center">
+              <div class="col-md-5">
+                <img src="assets/img/reunion1.png" class="img-fluid rounded-start" alt="Tailored Notion programs">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body mx-5">
+                  <h5 class="card-title">Tailored Notion Courses & Programs</h5>
+                  <p class="card-text">
+                    Cohorts and content designed in Notion, fully customized to the startup's stage, goals,
+                    and GTM model — all in one operating hub.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="carousel-inner">
-            <!-- Slide 1 -->
-            <div class="carousel-item active" data-bs-interval="8000">
-            <img src="assets/img/reunion1.png" class="d-block w-100" alt="Tailored Notion programs">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Tailored Notion Courses & Programs</h5>
-                <p>
-                Cohorts and content designed in Notion, fully customized to the startup's stage, goals, and GTM model — all in one operating hub.
-                </p>
+        <!-- Card 2: imagen derecha, texto izquierda -->
+        <div class="col-12">
+          <div class="card mb-4 shadow-sm how-card fade-right">
+            <div class="row g-0 align-items-center">
+              <div class="col-md-5 order-md-2">
+                <img src="assets/img/reunion12.png" class="img-fluid rounded-start" alt="Miro strategy sessions">
+              </div>
+              <div class="col-md-7 order-md-1">
+                <div class="card-body mx-5">
+                  <h5 class="card-title">Miro Strategy Sessions</h5>
+                  <p class="card-text">
+                    We use Miro to run workshops on GTM, fundraising, and product strategy — aligning founders,
+                    teams, and investors around one shared map.
+                  </p>
+                </div>
+              </div>
             </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="carousel-item" data-bs-interval="8000">
-            <img src="assets/img/reunion12.png" class="d-block w-100" alt="Miro strategy sessions">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Miro Strategy Sessions</h5>
-                <p>
-                We use Miro to run workshops on GTM, fundraising, and product strategy — aligning founders, teams, and investors around one shared map.
-                </p>
-            </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="carousel-item" data-bs-interval="8000">
-            <img src="assets/img/reunion13.png" class="d-block w-100" alt="Embedded leadership">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Embedded Leadership</h5>
-                <p>
-                We step in as GTM, Fundraising, and Operations leaders — not just advisors — working side by side with founding teams.
-                </p>
-            </div>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="carousel-item" data-bs-interval="8000">
-            <img src="assets/img/reunion14.png" class="d-block w-100" alt="Curated network">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Curated Network</h5>
-                <p>
-                Access to top professionals, investors, and operators aligned to each startup's unique needs — from specialists to long-term capital partners.
-                </p>
-            </div>
-            </div>
-
-            <!-- Slide 5 -->
-            <div class="carousel-item" data-bs-interval="8000">
-            <img src="assets/img/reunion15.png" class="d-block w-100" alt="Outcome tracking">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Outcome Tracking</h5>
-                <p>
-                Clear OKRs, dashboards, and reporting rhythms keep everyone focused on the few metrics that matter for the next raise and next stage of growth.
-                </p>
-            </div>
-            </div>
+          </div>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#howWeWorkCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#howWeWorkCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <!-- Card 3: imagen izquierda, texto derecha -->
+        <div class="col-12">
+          <div class="card mb-4 shadow-sm how-card fade-left">
+            <div class="row g-0 align-items-center">
+              <div class="col-md-5">
+                <img src="assets/img/reunion13.png" class="img-fluid rounded-start" alt="Embedded leadership">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body mx-5">
+                  <h5 class="card-title">Embedded Leadership</h5>
+                  <p class="card-text">
+                    We step in as GTM, Fundraising, and Operations leaders — not just advisors —
+                    working side by side with founding teams inside their operating rhythm.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
 
     </div>
   </section>
@@ -606,17 +597,18 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
+  <!-- Fade-in on scroll script -->
   <script>
-  const elements = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-      }
+    const elements = document.querySelectorAll('.fade-in, .fade-left, .fade-right');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
     });
-  });
-  elements.forEach(el=>observer.observe(el));
-</script>
+    elements.forEach(el=>observer.observe(el));
+  </script>
 
 </body>
 </html>
