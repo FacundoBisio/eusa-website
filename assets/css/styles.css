@@ -1,0 +1,242 @@
+/* ============================
+   GLOBAL
+============================ */
+body {
+  scroll-behavior: smooth;
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #0f172a;
+  line-height: 1.6;
+}
+
+/* Fade-in animation on scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth sections spacing */
+section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.section-title {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.section-heading {
+  font-weight: 700;
+  font-size: 2.3rem;
+  line-height: 1.1;
+}
+
+/* ============================
+   NAVBAR
+============================ */
+.navbar {
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============================
+   HERO
+============================ */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+  color: #f9fafb;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* Hero fade animation */
+.hero-section h1,
+.hero-section p,
+.hero-section .btn {
+  opacity: 0;
+  animation: fadeHero 1.2s ease forwards;
+}
+.hero-section h1 { animation-delay: 0.1s; }
+.hero-section p { animation-delay: 0.3s; }
+.hero-section .btn { animation-delay: 0.5s; }
+
+@keyframes fadeHero {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+
+/* ============================
+   CARDS
+============================ */
+.card-highlight {
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect — FoundersFactory style */
+.card-highlight:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================
+   COHORT / DARK SECTIONS
+============================ */
+.bg-soft {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.timeline-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #cbd5e1;
+}
+
+/* ============================
+   CAROUSEL
+============================ */
+.carousel-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 380px;
+  border-radius: 1rem;
+}
+
+.carousel-caption {
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  border-radius: 0 0 1rem 1rem;
+  padding-bottom: 2rem;
+}
+.carousel.carousel-dark .carousel-caption h5,
+.carousel.carousel-dark .carousel-caption p {
+  color: #f9fafb;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+}
+
+/* ============================
+   TEAM
+============================ */
+#team img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================
+   CONTACT FORMS
+============================ */
+form input,
+form textarea {
+  border-radius: 0.75rem !important;
+  border: 1px solid #cbd5e1;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* ============================
+   BUTTONS
+============================ */
+.btn-primary {
+  background-color: #3b82f6;
+  border: none;
+  padding: 0.75rem 1.4rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+}
+
+.btn-outline-light {
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.4rem;
+}
+
+/* ============================
+   FOOTER
+============================ */
+footer {
+  background: #020617;
+  color: #9ca3af;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+footer a {
+  color: #e2e8f0;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* ============================
+   CUSTOM ICONS
+============================ */
+.cohort-icon {
+  font-size: 2.3rem;
+  color: #3b82f6; /* celeste */
+}
+
+
+/* WHY EUSA GRID */
+.why-item {
+  padding: 1.25rem 0.25rem;
+}
+
+.why-icon {
+  font-size: 2.4rem;
+  color: #f5e7c3; /* dorado suave tipo VC */
+}
+
+#why-eusa h5 {
+  font-weight: 600;
+}
+
+#why-eusa p {
+  color: #e5e7eb;
+}
+
