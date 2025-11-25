@@ -9,6 +9,11 @@ body {
   line-height: 1.6;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 section {
   padding-top: 80px;
   padding-bottom: 80px;
@@ -159,6 +164,10 @@ section {
 /* =========================================================
    HOW WE WORK (cards replacing carousel)
 ========================================================= */
+.how-card .card-body {
+  padding: 1.75rem;
+}
+
 .how-card img {
   width: 100%;
   height: 250px;
@@ -169,6 +178,13 @@ section {
 @media (max-width: 767.98px) {
   .how-card img {
     min-height: 180px;
+  }
+}
+
+@media (min-width: 992px) {
+  .how-card .card-body {
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
   }
 }
 
@@ -265,6 +281,19 @@ footer a:hover {
   .navbar .btn {
     margin-top: 0.5rem;
   }
+    .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .hero-section .lead {
+    font-size: 0.98rem;
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
 }
 
 /* =========================================================
