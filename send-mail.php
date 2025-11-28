@@ -23,7 +23,7 @@ if ($name === "" || $email === "" || $message === "") {
     exit;
 }
 
-$to      = "sebastian@eusa-partners.com";
+$to      = "ejemplo@mail.com";
 $subject = "New EUSA application from $name";
 
 $body = "New application from the EUSA website:\n\n"
