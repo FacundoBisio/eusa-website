@@ -528,29 +528,32 @@
       </div>
       <div class="row g-5">
         <div class="col-lg-6">
-          <form>
-            <div class="mb-3">
-              <label for="name" class="form-label">Full name</label>
-              <input type="text" class="form-control" id="name" placeholder="Your name" />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com" />
-            </div>
-            <div class="mb-3">
-              <label for="startup" class="form-label">Startup / Project</label>
-              <input type="text" class="form-control" id="startup" placeholder="Name of your startup" />
-            </div>
-            <div class="mb-3">
-              <label for="website" class="form-label">Website (optional)</label>
-              <input type="url" class="form-control" id="website" placeholder="https://…" />
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Tell us where you are and what you want to achieve</label>
-              <textarea class="form-control" id="message" rows="4"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg">Send application</button>
-          </form>
+          <form id="contactForm" action="send-mail.php" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label">Full name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="mb-3">
+            <label for="startup" class="form-label">Startup / Project</label>
+            <input type="text" class="form-control" id="startup" name="startup" placeholder="Name of your startup" />
+          </div>
+          <div class="mb-3">
+            <label for="website" class="form-label">Website (optional)</label>
+            <input type="url" class="form-control" id="website" name="website" placeholder="https://…" />
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Tell us where you are and what you want to achieve</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg">Send application</button>
+
+          <!-- Mensaje de éxito / error -->
+          <div id="form-alert" class="alert mt-3 d-none" role="alert"></div>
+        </form>
         </div>
         <div class="col-lg-6">
           <div class="card card-highlight mb-3">
@@ -611,6 +614,47 @@
     });
     elements.forEach(el=>observer.observe(el));
   </script>
+
+  <!-- Form submission script -->
+  <script>
+  const contactForm = document.getElementById('contactForm');
+  const alertBox = document.getElementById('form-alert');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // ocultar mensaje previo
+      alertBox.classList.add('d-none');
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch('send-mail.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'ok') {
+          alertBox.className = 'alert alert-success mt-3';
+          alertBox.textContent = 'Your application has been sent successfully.';
+          alertBox.classList.remove('d-none');
+          contactForm.reset();
+        } else {
+          alertBox.className = 'alert alert-danger mt-3';
+          alertBox.textContent = 'There was a problem sending your application. Please try again.';
+          alertBox.classList.remove('d-none');
+        }
+      } catch (error) {
+        alertBox.className = 'alert alert-danger mt-3';
+        alertBox.textContent = 'There was a problem sending your application. Please try again.';
+        alertBox.classList.remove('d-none');
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
