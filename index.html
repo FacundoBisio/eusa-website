@@ -543,7 +543,17 @@
           </div>
           <div class="mb-3">
             <label for="website" class="form-label">Website (optional)</label>
-            <input type="url" class="form-control" id="website" name="website" placeholder="https://…" />
+            <input 
+              type="text" 
+              class="form-control" 
+              id="website" 
+              name="website"
+              placeholder="https://eusa-partners.com"
+              pattern="^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            />
+            <div class="form-text">
+              Acepta: dominio.com, www.dominio.com, https://dominio.com
+            </div>
           </div>
           <div class="mb-3">
             <label for="message" class="form-label">Tell us where you are and what you want to achieve</label>
