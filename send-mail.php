@@ -31,7 +31,7 @@ if ($name === "" || $email === "" || $message === "") {
 }
 
 // 3. Configura aquí tu email real
-$to      = "tucorreo@tudominio.com"; // CAMBIAR ESTO
+$to      = "sebastian@eusa-partners.com"; // receptor del correo
 $subject = "New Founder Application: $startup";
 
 // 4. Construimos el cuerpo del correo con todos los datos

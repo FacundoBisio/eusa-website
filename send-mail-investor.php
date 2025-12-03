@@ -27,7 +27,7 @@ if ($name === "" || $email === "") {
 }
 
 // 3. Configura tu email
-$to      = "tucorreo@tudominio.com"; // CAMBIAR ESTO
+$to      = "sebastian@eusa-partners.com"; // receptor del correo
 $subject = "New Investor Network Request: $name";
 
 // 4. Cuerpo del correo diferenciado

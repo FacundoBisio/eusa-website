@@ -1,19 +1,38 @@
 /* =========================================================
-   GLOBAL
+   EUSA VENTURE STUDIO - MAIN STYLES
+   author: Facundo Bisio
 ========================================================= */
+
+/* =========================================================
+   1. GLOBAL RESETS & TYPOGRAPHY
+========================================================= */
+:root {
+  /* Core Colors */
+  --eusa-dark: #0f172a;  /* Slate 900 */
+  --eusa-darker: #020617; /* Slate 950 */
+  --eusa-light: #f9fafb; /* Gray 50 */
+  --eusa-muted: #64748b; /* Slate 500 */
+  --eusa-blue: #3b82f6;
+  --eusa-blue-hover: #2563eb;
+  --eusa-green: #16a34a;
+  --eusa-gold: #f5e7c3;
+}
+
 body {
   scroll-behavior: smooth;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background-color: #ffffff;
-  color: #0f172a;
+  color: var(--eusa-dark);
   line-height: 1.6;
 }
 
-html,
-body {
+html, body {
   overflow-x: hidden;
 }
 
+/* =========================================================
+   2. SECTIONS & HEADINGS
+========================================================= */
 section {
   padding-top: 80px;
   padding-bottom: 80px;
@@ -24,20 +43,30 @@ section {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--eusa-muted);
 }
 
 .section-heading {
-  font-weight: 700;
-  font-size: 2.3rem;
-  line-height: 1.1;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
-/* Fade-in animation */
+/* Backgrounds */
+.bg-soft {
+  background: var(--eusa-dark);
+  color: var(--eusa-light);
+}
+
+/* =========================================================
+   3. ANIMATIONS
+========================================================= */
+/* Fade Up */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .fade-in.visible {
@@ -45,24 +74,40 @@ section {
   transform: translateY(0);
 }
 
+/* Fade Left/Right (for larger screens) */
+@media (min-width: 992px) {
+  .fade-left, .fade-right {
+    opacity: 0;
+    transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .fade-left { transform: translateX(-40px); }
+  .fade-right { transform: translateX(40px); }
+  
+  .fade-left.visible, .fade-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* =========================================================
-   NAVBAR
+   4. NAVBAR
 ========================================================= */
 .navbar {
-  background: rgba(2, 6, 23, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(2, 6, 23, 0.9); /* Slightly darker opacity */
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .navbar-brand {
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .navbar .nav-link {
   font-size: 0.95rem;
   font-weight: 500;
-  color: #e5e7eb;
+  color: #e2e8f0; /* Slate 200 */
+  transition: color 0.2s ease;
 }
 
 .navbar .nav-link:hover {
@@ -70,440 +115,322 @@ section {
 }
 
 /* =========================================================
-   HERO (with background image overlay)
+   5. HERO SECTION
 ========================================================= */
 .hero-section {
-  min-height: 100vh;
+  min-height: 95vh; /* Slightly less than full 100vh for better mobile feel */
   display: flex;
   align-items: center;
+  /* Capa oscura más fuerte para mejorar legibilidad */
   background:
-    linear-gradient(to bottom right, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.96)),
-    url("../img/empresa.jpg") center/cover no-repeat;
-  color: #f9fafb;
-  padding-top: 120px;
-  padding-bottom: 120px;
+    linear-gradient(to bottom, rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.95)),
+    url("../img/empresa.jpg") center center / cover no-repeat;
+  color: var(--eusa-light);
+  padding-top: 140px;
+  padding-bottom: 100px;
 }
 
-/* Hero fade */
-.hero-section h1,
-.hero-section p,
-.hero-section .btn {
-  opacity: 0;
-  animation: fadeHero 1.2s ease forwards;
-}
-
-.hero-section h1 {
-  animation-delay: 0.1s;
-}
-
-.hero-section p {
-  animation-delay: 0.3s;
-}
-
-.hero-section .btn {
-  animation-delay: 0.5s;
-}
-
-@keyframes fadeHero {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-section h1.display-6 {
+    font-size: 3rem; /* Larger on desktop */
+    font-weight: 800;
+    letter-spacing: -0.03em;
 }
 
 .hero-badge {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.15); /* Blue tint background */
+  padding: 0.4em 0.8em;
+  border-radius: 0.5rem;
+  color: #60a5fa; /* Lighter blue for contrast on dark bg */
 }
 
-/* =========================================================
-   CARDS (shared styles & HOVER EFFECTS)
-========================================================= */
-.card-highlight {
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
-  padding: 1rem;
-  /* "all" permite animar también el borde */
-  transition: all 0.3s ease;
-}
-
-/* Hover General (Elevación y Sombra) */
-.card-highlight:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-}
-
-/* Hover Específico: FOUNDER (Borde Azul) */
-.hover-card:hover {
-  border-color: #3b82f6 !important;
-}
-
-/* Hover Específico: INVESTOR (Borde Verde) */
-.hover-card-success:hover {
-  border-color: #16a34a !important;
-}
-
-/* =========================================================
-   WHY EUSA (icon cards)
-========================================================= */
-.why-item {
-  padding: 1.25rem 0.25rem;
-}
-
-.why-icon {
-  font-size: 2.4rem;
-  color: #f5e7c3; /* Soft VC gold */
-}
-
-#why-eusa h5 {
-  font-weight: 600;
-}
-
-#why-eusa p {
-  color: #e5e7eb;
-}
-
-/* =========================================================
-   COHORT / PROGRAMS
-========================================================= */
-.bg-soft {
-  background: #0f172a;
-  color: #e5e7eb;
-}
-
-.timeline-badge {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #cbd5e1;
-}
-
-.cohort-icon {
-  font-size: 2.3rem;
-  color: #f5e7c3; /* Soft VC gold */
-}
-
-/* =========================================================
-   HOW WE WORK / IMAGES
-========================================================= */
-.how-card .card-body {
-  padding: 1.75rem;
-}
-
-.how-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  min-height: 220px;
-}
-
-@media (max-width: 767.98px) {
-  .how-card img {
-    min-height: 180px;
-  }
-}
-
-@media (min-width: 992px) {
-  .how-card .card-body {
-    padding-left: 2.25rem;
-    padding-right: 2.25rem;
-  }
-}
-
-/* =========================================================
-   TEAM
-========================================================= */
-#team img {
-  width: 130px;
-  height: 130px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-}
-
-/* =========================================================
-   FORMS
-========================================================= */
-form input,
-form textarea {
-  border-radius: 0.75rem !important;
-  border: 1px solid #cbd5e1;
-}
-
-form input:focus,
-form textarea:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-}
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-.btn-primary {
-  background-color: #3b82f6;
-  border: none;
-  padding: 0.75rem 1.4rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-}
-
-.btn-primary:hover {
-  background-color: #2563eb;
-}
-
-.btn-outline-light {
-  border-radius: 0.75rem;
-  padding: 0.75rem 1.4rem;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-footer {
-  background: #020617;
-  color: #9ca3af;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-footer a {
-  color: #e2e8f0;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* =========================================================
-   MOBILE OPTIMIZATION
-========================================================= */
-@media (max-width: 767.98px) {
-  section {
-    padding-top: 56px;
-    padding-bottom: 56px;
-  }
-
-  .hero-section {
-    padding-top: 96px;
-    padding-bottom: 72px;
-    text-align: center;
-  }
-
-  .hero-section .display-6 {
-    font-size: 1.9rem;
-  }
-
-  .section-heading {
-    font-size: 1.8rem;
-  }
-
-  .navbar .btn {
-    margin-top: 0.5rem;
-  }
-
-  .container {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .hero-section .lead {
-    font-size: 0.98rem;
-  }
-
-  .card-body {
-    padding: 1.25rem;
-  }
-}
-
-/* =========================================================
-   SCROLL ANIMATIONS (fade + left/right)
-========================================================= */
-.fade-left,
-.fade-right {
+/* Hero initial animations */
+.hero-section h1, .hero-section p, .hero-section .btn, .hero-section .card {
   opacity: 0;
-  transition: all 0.9s ease;
+  animation: fadeHero 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
+.hero-section h1 { animation-delay: 0.2s; }
+.hero-section p.lead { animation-delay: 0.4s; }
+.hero-section p:not(.lead) { animation-delay: 0.5s; }
+.hero-section .btn { animation-delay: 0.7s; }
+.hero-section .card { animation-delay: 0.9s; }
 
-.fade-left {
-  transform: translateX(-24px);
-}
-
-.fade-right {
-  transform: translateX(24px);
-}
-
-.fade-left.visible,
-.fade-right.visible {
-  opacity: 1;
-  transform: translateX(0);
+@keyframes fadeHero {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================================================
-   TICKER
+   6. TICKER (Infinite Scroll)
 ========================================================= */
 .ticker {
-  background: #020617;
-  color: #e5e7eb;
-  overflow: hidden;
-  padding: 0.5rem 0;
-  width: 100%;
+  background: var(--eusa-darker);
+  color: rgba(255,255,255,0.8);
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .ticker-inner {
   display: flex;
-  gap: 2.5rem;
+  gap: 4rem;
   white-space: nowrap;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding-left: 100%;
-  animation: tickerMove 28s linear infinite;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  padding-left: 100%; /* Start off-screen */
+  animation: tickerMove 35s linear infinite;
 }
 
 @keyframes tickerMove {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
+  100% { transform: translateX(-200%); } /* Move further left to loop smoothly */
 }
 
 /* =========================================================
-   INVESTORS SECTION (Dark Theme Overrides)
+   7. CARDS & UI ELEMENTS
 ========================================================= */
-#investors .accordion-item,
+/* Base Card Style */
+.card-highlight {
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem; /* Rounder corners */
+  padding: 1.25rem;
+  background: #ffffff;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover Effects (Shadow & Lift) */
+.card-highlight:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  border-color: transparent; /* Let the shadow define the edge */
+}
+
+/* Specific Colored Borders on Hover */
+.hover-card:hover { border-color: var(--eusa-blue) !important; }
+.hover-card-success:hover { border-color: var(--eusa-green) !important; }
+
+/* Program Cards specific styling */
+.program-card .card-body { padding: 1.5rem; }
+.program-card .card-title { font-weight: 700; margin-bottom: 1rem; }
+
+/* Accordions (Investors Section - Dark Theme) */
+#investors .accordion-item {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
 #investors .accordion-button {
-  background-color: transparent;
-  color: #e5e7eb;
-  border-color: rgba(148, 163, 184, 0.4);
+    background: transparent;
+    color: var(--eusa-light);
+    font-weight: 600;
+    padding-left: 0;
+    box-shadow: none;
 }
-
 #investors .accordion-button:not(.collapsed) {
-  color: #f9fafb;
-  box-shadow: none;
+    color: var(--eusa-blue); /* Highlight active accordion */
 }
-
 #investors .accordion-button::after {
-  filter: invert(1);
+    filter: invert(1) brightness(2); /* White arrow */
+    transform: scale(0.8);
 }
-
 #investors .accordion-body {
-  color: #cbd5e1;
+    padding-left: 0;
+    color: rgba(255,255,255,0.7);
+}
+/* Accordions (Founders Section - Light Theme) */
+#founders .accordion-button {
+    font-weight: 600;
+    background-color: transparent; 
+}
+#founders .accordion-button:not(.collapsed) {
+  color: var(--eusa-blue);
+  background-color: transparent;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
 }
 
-#investors .card.card-highlight {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: rgba(148, 163, 184, 0.7);
-}
-
-#investors .card.card-highlight .card-body {
-  color: #e5e7eb;
+/* Team Images */
+#team img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 1rem; /* Rounded squares instead of circles for modernity */
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================================================
-   CUSTOM TABS (Material Style)
+   8. FORMS & INPUTS
 ========================================================= */
-.custom-tabs.nav-pills {
-  background-color: #f1f5f9; /* Slate-100 */
-}
-
-/* Estilo base de los botones de pestaña */
-.custom-tabs .nav-link {
-  color: #64748b; /* Slate-500 */
-  transition: all 0.3s ease;
+.form-control, .form-select {
+  border-radius: 0.75rem !important;
+  border: 1px solid #e2e8f0;
+  padding: 0.8rem 1rem;
   font-size: 0.95rem;
-  margin: 0;
+  color: var(--eusa-dark);
+  background-color: #f8fafc; /* Slight gray background */
 }
 
-/* Hover suave */
-.custom-tabs .nav-link:hover {
-  color: #0f172a;
-  background-color: rgba(255, 255, 255, 0.6);
+.form-control:focus, .form-select:focus {
+  background-color: #ffffff;
+  border-color: var(--eusa-blue);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
-/* ESTADO ACTIVO: Fondo NEGRO, texto e icono BLANCO */
-.custom-tabs .nav-link.active {
-  background-color: #000000 !important; /* Fondo negro */
-  color: #ffffff !important; /* Texto blanco */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-  transform: scale(1.02);
-}
-
-/* Asegurar que el icono también sea blanco */
-.custom-tabs .nav-link.active i {
-  color: #ffffff !important;
-}
-
-/* Inputs del formulario estilo "Moderno/Clean" */
-#apply input.form-control,
-#apply select.form-select,
-#apply textarea.form-control {
-  font-size: 0.95rem;
-  color: #334155;
-}
-
-#apply input.form-control:focus,
-#apply select.form-select:focus,
-#apply textarea.form-control:focus {
-  background-color: #fff;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); /* Anillo suave azul */
-  border: 1px solid #cbd5e1 !important;
-}
-
-/* Botones del formulario */
-#apply .btn-primary {
-  background-color: #2563eb; /* Azul brillante */
-  border: none;
-}
-
-#apply .btn-primary:hover {
-  background-color: #1d4ed8;
-  transform: translateY(-2px);
+.form-label {
+    color: var(--eusa-muted);
+    letter-spacing: 0.05em;
 }
 
 /* =========================================================
-   APPLY SECTION BACKGROUND IMAGE
+   9. BUTTONS
+========================================================= */
+.btn {
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--eusa-blue);
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+}
+.btn-primary:hover {
+  background-color: var(--eusa-blue-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+}
+
+.btn-outline-light:hover, .btn-outline-primary:hover, .btn-outline-success:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   10. APPLY SECTION (TABS & BACKGROUND)
 ========================================================= */
 .bg-image-overlay {
   position: relative;
-  /* CAMBIA LA RUTA DE LA IMAGEN SI ES NECESARIO */
+  /* Asegúrate de que la ruta de la imagen sea correcta */
   background-image: url('../img/empresa.jpg'); 
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* Opcional: efecto parallax */
-  padding: 80px 0;
+  background-position: center top;
+  /* FIXED: Esto mantiene el fondo estable sin generar espacio blanco debajo */
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
+  padding: 100px 0;
 }
 
-/* Capa oscura semitransparente encima de la imagen */
+/* Capa oscura sobre la imagen */
 .bg-image-overlay::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Ajusta 0.7 para más/menos oscuridad */
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(2, 6, 23, 0.8); /* Dark overlay */
   z-index: 1;
 }
+.bg-image-overlay .container { position: relative; z-index: 2; }
 
-/* Asegurar que el contenido esté por encima de la capa oscura */
-.bg-image-overlay .container {
-  position: relative;
-  z-index: 2;
+/* Custom Tabs Styling (Material Pill Style) */
+.custom-tabs.nav-pills {
+    background-color: #f1f5f9; /* Slate 100 background for the tab container */
+    padding: 0.5rem;
 }
 
-/* Un pequeño ajuste para que el subtítulo se vea mejor en blanco */
-#apply p.text-muted {
-  color: rgba(255, 255, 255, 0.8) !important;
+.custom-tabs .nav-link {
+    color: var(--eusa-muted);
+    font-weight: 600;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.custom-tabs .nav-link:hover:not(.active) {
+    background-color: rgba(255,255,255,0.5);
+    color: var(--eusa-dark);
+}
+
+/* Active Tab State */
+.custom-tabs .nav-link.active {
+    background-color: var(--eusa-darker) !important; /* Black background */
+    color: #ffffff !important; /* White text */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.custom-tabs .nav-link.active i { color: #ffffff !important; }
+
+/* =========================================================
+   11. FOOTER
+========================================================= */
+footer {
+  background: var(--eusa-darker);
+  color: var(--eusa-muted);
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+footer a { color: #e2e8f0; text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: var(--eusa-blue); }
+
+/* =========================================================
+   12. MOBILE OPTIMIZATION (The "Chico y Espaciado" fix)
+========================================================= */
+@media (max-width: 991.98px) {
+    /* Ajuste de títulos en tablets/movil */
+    .hero-section h1.display-6 { font-size: 2.5rem; }
+    .section-heading { font-size: 2rem; }
+    
+    /* Más espacio vertical entre elementos en móvil */
+    .row.g-4 > [class*="col-"] {
+        margin-bottom: 1.5rem; /* Espaciado extra entre tarjetas apiladas */
+    }
+    /* Reset del margen para el último elemento */
+    .row.g-4 > [class*="col-"]:last-child { margin-bottom: 0; }
+}
+
+@media (max-width: 767.98px) {
+    /* Reducción de padding general en secciones */
+    section { padding-top: 60px; padding-bottom: 60px; }
+
+    /* Hero más compacto pero con aire */
+    .hero-section {
+        padding-top: 120px;
+        padding-bottom: 80px;
+        text-align: center;
+        min-height: auto; /* Dejar que el contenido defina la altura en móvil */
+    }
+
+    /* Títulos más chicos en móvil */
+    .hero-section h1.display-6 { font-size: 2rem; line-height: 1.2; }
+    .section-heading { font-size: 1.75rem; }
+    .lead { font-size: 1rem; }
+
+    /* Botones full width en móvil para fácil tap */
+    .hero-section .d-flex.gap-3 {
+        flex-direction: column;
+        width: 100%;
+    }
+    .hero-section .btn, .final-cta .btn { 
+        width: 100%; 
+        margin-bottom: 0.5rem;
+    }
+
+    /* Ajuste del formulario en móvil */
+    #apply .card-body {
+        padding: 1.5rem !important; /* Menos padding horizontal en móvil */
+    }
+    .custom-tabs .nav-link {
+        padding: 0.75rem; /* Pestañas más compactas */
+        font-size: 0.9rem;
+    }
+    
+    /* Desactivar fixed background en móvil si causa problemas de rendimiento, 
+       pero debería estar bien en la mayoría de los casos modernos. 
+       Si se siente raro el scroll, descomenta la línea de abajo: */
+    /* .bg-image-overlay { background-attachment: scroll; } */
 }
