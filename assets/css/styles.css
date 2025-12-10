@@ -18,16 +18,22 @@
   --eusa-gold: #f5e7c3;
 }
 
+html, body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Reset padding as we handle it per-page or via sections now, 
+     but keeping the color/font defaults */
   scroll-behavior: smooth;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background-color: #ffffff;
   color: var(--eusa-dark);
   line-height: 1.6;
-}
-
-html, body {
-  overflow-x: hidden;
 }
 
 /* =========================================================
@@ -46,12 +52,7 @@ section {
   color: var(--eusa-muted);
 }
 
-.section-heading {
-  font-weight: 800;
-  font-size: 2.5rem;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
+
 
 /* Backgrounds */
 .bg-soft {
@@ -373,6 +374,7 @@ footer {
   color: var(--eusa-muted);
   padding: 3rem 0;
   border-top: 1px solid rgba(255,255,255,0.05);
+  margin-top: auto;
 }
 footer a { color: #e2e8f0; text-decoration: none; transition: color 0.2s; }
 footer a:hover { color: var(--eusa-blue); }
@@ -383,7 +385,6 @@ footer a:hover { color: var(--eusa-blue); }
 @media (max-width: 991.98px) {
     /* Ajuste de títulos en tablets/movil */
     .hero-section h1.display-6 { font-size: 2.5rem; }
-    .section-heading { font-size: 2rem; }
     
     /* Más espacio vertical entre elementos en móvil */
     .row.g-4 > [class*="col-"] {
@@ -407,7 +408,7 @@ footer a:hover { color: var(--eusa-blue); }
 
     /* Títulos más chicos en móvil */
     .hero-section h1.display-6 { font-size: 2rem; line-height: 1.2; }
-    .section-heading { font-size: 1.75rem; }
+
     .lead { font-size: 1rem; }
 
     /* Botones full width en móvil para fácil tap */
@@ -415,7 +416,7 @@ footer a:hover { color: var(--eusa-blue); }
         flex-direction: column;
         width: 100%;
     }
-    .hero-section .btn, .final-cta .btn { 
+    .hero-section .btn { 
         width: 100%; 
         margin-bottom: 0.5rem;
     }
