@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* === CONFIGURACIÓN DEL TEMA (Colores y Fuentes) === */
+@theme {
+  /* Tus colores personalizados */
+  --color-navy-900: #0f172a;
+  --color-navy-800: #1e293b;
+  --color-ui-50: #f8fafc;
+  --color-ui-100: #f1f5f9;
+  --color-ui-200: #e2e8f0;
+
+  /* Fuentes */
+  --font-sans: "Inter", sans-serif;
+
+  /* Animación Fade Up personalizada */
+  --animate-fade-up: fadeUp 0.8s ease-out forwards;
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* === EFECTO SPOTLIGHT (Lando Norris Style) === */
+@layer utilities {
+  .spotlight-card {
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  /* El brillo que sigue al mouse */
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(15, 23, 42, 0.06), 
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Mostrar brillo al pasar mouse sobre el grupo */
+  .spotlight-group:hover .spotlight-card::before {
+    opacity: 1;
+  }
+
+  /* --- Versión Oscura (Inversores) --- */
+  .dark-spotlight {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dark-spotlight::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(255, 255, 255, 0.08), 
+      transparent 40%
+    );
+    pointer-events: none;
+    z-index: 20;
+  }
+  
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+}
