@@ -24,7 +24,7 @@
       ]
     }
     </script>
-    <link href="dist/output.css" rel="stylesheet">
+    <link href="dist/output.css?v=6" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/empresa.webp" fetchpriority="high">
@@ -54,33 +54,35 @@
         </div>
     </nav>
 
-    <section class="w-full pt-32 pb-24 md:pt-48 md:pb-32 flex flex-col items-center text-center relative overflow-hidden hero-section" onmousemove="handleSpotlight(event)">
-        <div class="absolute inset-0 z-0 pointer-events-none">
-        <!-- Base SIEMPRE visible (mobile + tablet + desktop) -->
-        <img
-            src="images/fondoEmpresarial.jpeg"
-            alt="Meeting Room"
-            width="1920"
-            height="1080"
-            class="w-full h-full object-cover grayscale opacity-20"
-            fetchpriority="high"
-        >
+    <section class="w-full pt-32 pb-24 md:pt-48 md:pb-32 flex flex-col items-center text-center relative overflow-hidden hero-section bg-white" onmousemove="handleSpotlight(event)">
 
-        <!-- Overlay con spotlight SOLO desktop (lg+) -->
-        <div class="absolute inset-0 hero-spotlight-mask hidden lg:block">
+        <!-- FONDO SOLO DESKTOP (lg+) -->
+        <div class="absolute inset-0 z-0 pointer-events-none hidden lg:block">
+            <!-- Base -->
             <img
-            src="images/fondoEmpresarial.jpeg"
-            alt="Meeting Room Revealed"
-            width="1920"
-            height="1080"
-            class="w-full h-full object-cover"
-            fetchpriority="high"
+                src="images/fondoEmpresarial.jpeg"
+                alt="Meeting Room"
+                width="1920"
+                height="1080"
+                class="w-full h-full object-cover grayscale opacity-20"
+                fetchpriority="high"
             >
+
+            <!-- Spotlight overlay (solo existe en desktop porque el wrapper ya está hidden lg:block) -->
+            <div class="absolute inset-0 hero-spotlight-mask">
+                <img
+                    src="images/fondoEmpresarial.jpeg"
+                    alt="Meeting Room Revealed"
+                    width="1920"
+                    height="1080"
+                    class="w-full h-full object-cover"
+                    fetchpriority="high"
+                >
+            </div>
         </div>
-        </div>
-        
+
         <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)]"></div>
-        
+
         <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
             <div class="inline-flex gap-2 border border-ui-200 bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full mb-8 items-center animate-fade-up">
                 <span class="relative flex h-2 w-2">
@@ -89,17 +91,15 @@
                 </span>
                 <span class="text-xs font-medium text-slate-600">Applications Now Open</span>
             </div>
-            
+
             <h1 class="text-5xl md:text-7xl lg:text-8xl leading-[1.1] text-navy-900 font-medium tracking-tighter max-w-5xl mb-8 animate-fade-up delay-100">
                 Co-Build a Global, <br class="hidden md:block"> Investor-Ready Startup.
             </h1>
-            
-            <p class="text-lg md:text-xl text-slate-700 max-w-2xl font-light leading-relaxed mb-12
-                    transition-colors duration-200
-                    ">
+
+            <p class="text-lg md:text-xl text-slate-700 max-w-2xl font-light leading-relaxed mb-12 transition-colors duration-200 hover:text-white">
             EUSA is an international venture studio helping founders raise capital, build traction, and launch into the US and EU markets.
             </p>
-            
+
             <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto animate-fade-up delay-200">
                 <a href="founders.html" class="w-full md:w-auto px-8 py-3.5 bg-navy-900 text-white text-sm font-medium rounded-full hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group hover:shadow-xl cursor-pointer" aria-label="Apply as a Founder">
                     Apply as a Founder
@@ -112,9 +112,7 @@
             </div>
 
             <div class="mt-16 pt-8 border-t border-ui-100 w-full max-w-xs md:max-w-md mx-auto animate-fade-up delay-200">
-                <p class="text-xs text-slate-700 font-medium uppercase tracking-widest text-center
-                        transition-colors duration-200
-                        ">
+                <p class="text-xs text-slate-700 font-medium uppercase tracking-widest text-center transition-colors duration-200 hover:text-white">
                 Backed by founders, operators &amp; investors
                 </p>
             </div>
@@ -143,9 +141,9 @@
                 <h2 class="text-3xl md:text-5xl text-navy-900 font-medium tracking-tighter mb-4">Why Choose EUSA</h2>
                 <p class="text-lg text-slate-500 max-w-xl mx-auto">Built for founders who need more than just capital—strategic support to win.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-ui-200 border border-ui-200 rounded-2xl overflow-hidden shadow-sm">
-                
+
                 <div class="group p-10 md:p-12 bg-white hover:bg-gray-200 duration-300` transition-colors cursor-default h-full flex flex-col justify-start">
                     <div class="w-12 h-12 rounded-full bg-ui-100 flex items-center justify-center text-navy-900 mb-6 group-hover:bg-navy-900 group-hover:text-white transition-colors duration-300">
                         <iconify-icon icon="lucide:globe" width="24"></iconify-icon>
@@ -178,13 +176,13 @@
 
     <section class="w-full">
         <div class="grid grid-cols-1 md:grid-cols-2">
-            
+
             <div id="founders" class="bg-ui-50 px-8 py-24 md:p-24 flex flex-col justify-center border-b md:border-b-0 md:border-r border-ui-200 group relative">
                 <div class="relative z-10 max-w-lg mx-auto md:mx-0 md:mr-auto md:ml-auto lg:mr-12">
                     <span class="text-xs font-semibold tracking-widest uppercase text-slate-500 mb-4 block">For Founders</span>
                     <h2 class="md:text-4xl text-navy-900 text-3xl font-medium tracking-tight mb-6">Raise &amp; Scale</h2>
                     <p class="leading-relaxed text-lg text-slate-600 mb-8">You’ve built a POC or MVP and now need fundraising assistance, GTM traction, and guidance entering US/EU markets.</p>
-                    
+
                     <ul class="space-y-4 mb-10">
                         <li class="flex items-center gap-3 text-sm text-slate-600">
                             <iconify-icon icon="lucide:check-circle" class="text-navy-900"></iconify-icon> Proven fundraising frameworks
@@ -241,7 +239,6 @@
                 <p class="text-lg text-slate-500 max-w-xl">Structured support to take you from POC to closing your round.</p>
             </div>
 
-            
             <div class="text-center mt-16">
                  <a href="programs.html" class="inline-flex items-center justify-center px-8 py-3 bg-ui-50 text-navy-900 text-sm font-medium rounded-full hover:bg-navy-900 hover:text-white transition-all gap-2" aria-label="Explore Programs">
                     Explore Programs <iconify-icon icon="lucide:arrow-right"></iconify-icon>
@@ -260,7 +257,7 @@
                     <span class="flex items-center gap-2"><iconify-icon icon="lucide:map-pin"></iconify-icon> Miami</span>
                 </div>
             </div>
-            
+
             <div class="lg:col-span-1"></div>
 
             <div class="lg:col-span-6 flex flex-col justify-between">
@@ -294,7 +291,6 @@
             </div>
         </div>
 
-        
             <div class="mt-16 text-center">
                  <a href="https://www.linkedin.com/company/eusa-aceleradora/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-navy-900 transition-colors text-sm font-medium text-slate-400" aria-label="Follow us on LinkedIn">
                     <iconify-icon icon="mdi:linkedin" width="20"></iconify-icon>
@@ -311,7 +307,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                
+
                 <!-- Founder Application -->
                 <div class="bg-white p-8 border border-ui-200 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 spotlight-hover-light relative overflow-hidden" onmousemove="handleSpotlight(event)">
                     <h3 class="text-xl font-medium text-navy-900 mb-6 flex items-center gap-2 relative z-10">
@@ -319,14 +315,14 @@
                     </h3>
                     <form id="founderForm" class="space-y-4 relative z-10">
                         <div class="grid grid-cols-2 gap-4">
-                            <input type="text" name="name" placeholder="Name" required 
+                            <input type="text" name="name" placeholder="Name" required
                                 class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
-                            
-                            <input type="email" name="email" placeholder="Email" required 
+
+                            <input type="email" name="email" placeholder="Email" required
                                 class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
                         </div>
 
-                        <input type="text" name="startup_name" placeholder="Startup Name" required 
+                        <input type="text" name="startup_name" placeholder="Startup Name" required
                             class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
 
                         <div class="grid grid-cols-2 gap-4">
@@ -336,14 +332,14 @@
                                 <option value="MVP/POC">MVP/POC</option>
                                 <option value="Early Traction">Early Traction</option>
                             </select>
-                            
-                            <input type="text" name="target_raise" placeholder="Target Raise (€)" 
+
+                            <input type="text" name="target_raise" placeholder="Target Raise (€)"
                                 class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
                         </div>
 
-                        <textarea name="blocker" placeholder="What is your biggest blocker?" rows="3" 
+                        <textarea name="blocker" placeholder="What is your biggest blocker?" rows="3"
                                 class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all"></textarea>
-                        
+
                         <div class="pt-2">
                             <button type="submit" class="w-full py-3 bg-navy-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-all hover:scale-[1.02] transform cursor-pointer flex justify-center items-center gap-2">
                                 <span>Submit Application</span>
@@ -360,27 +356,27 @@
                     </h3>
                     <form id="investorForm" class="space-y-4 relative z-10">
                         <div class="grid grid-cols-2 gap-4">
-                            <input type="text" name="name" placeholder="Name" required 
+                            <input type="text" name="name" placeholder="Name" required
                                 class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
-                            
-                            <input type="email" name="email" placeholder="Email" required 
+
+                            <input type="email" name="email" placeholder="Email" required
                                 class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                         </div>
 
-                        <input type="text" name="firm_name" placeholder="Firm / Angel Name" 
+                        <input type="text" name="firm_name" placeholder="Firm / Angel Name"
                             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
-                        
-                        <input type="text" name="thesis" placeholder="Investment Thesis" 
+
+                        <input type="text" name="thesis" placeholder="Investment Thesis"
                             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
-                        
+
                         <div class="grid grid-cols-2 gap-4">
-                            <input type="text" name="geography" placeholder="Geography" 
+                            <input type="text" name="geography" placeholder="Geography"
                                 class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
-                            
-                            <input type="text" name="ticket_size" placeholder="Ticket Size" 
+
+                            <input type="text" name="ticket_size" placeholder="Ticket Size"
                                 class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                         </div>
-                        
+
                         <div class="pt-2">
                             <button type="submit" class="w-full py-3 bg-white text-navy-900 font-medium rounded-lg hover:bg-slate-200 transition-all hover:scale-[1.02] transform cursor-pointer flex justify-center items-center gap-2">
                                 <span>Request Access</span>
@@ -390,7 +386,7 @@
                     </form>
                 </div>
             </div>
-            
+
             <div class="mt-16 text-center">
                  <a href="mailto:hello@eusa-partners.com" class="hover:text-navy-900 transition-colors text-sm font-medium text-slate-400">hello@eusa-partners.com</a>
             </div>
@@ -411,11 +407,14 @@
     <script>
         // Manejador Genérico (Hero, Formularios, etc.)
         function handleSpotlight(e) {
+            // Solo desktop (lg+)
+            if (window.innerWidth < 1024) return;
+
             const section = e.currentTarget;
             const rect = section.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             section.style.setProperty("--mouse-x", `${x}px`);
             section.style.setProperty("--mouse-y", `${y}px`);
         }
