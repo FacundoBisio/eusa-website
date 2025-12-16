@@ -126,18 +126,18 @@
                         class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
 
                     <div class="grid grid-cols-2 gap-4">
-                        <select name="stage" class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm text-slate-500 focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
+                        <select name="stage" required class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm text-slate-500 focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
                             <option value="" disabled selected>Current Stage</option>
                             <option value="Idea">Idea</option>
                             <option value="MVP/POC">MVP/POC</option>
                             <option value="Early Traction">Early Traction</option>
                         </select>
                         
-                        <input type="text" name="target_raise" placeholder="Target Raise (€)" 
+                        <input type="text" name="target_raise" placeholder="Target Raise (€)" required 
                             class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
                     </div>
 
-                    <textarea name="blocker" placeholder="What is your biggest blocker?" rows="3" 
+                    <textarea name="blocker" placeholder="What is your biggest blocker?" rows="3" required 
                             class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all"></textarea>
                     
                     <div class="pt-2">
@@ -160,17 +160,18 @@
 
     <script>
         // Toast
-        const toast = document.getElementById('toast-success');
-
         function showToast() {
+            const toast = document.getElementById('toast-success');
+            if(!toast) return;
+
             // Mostrar
-            toast.classList.remove('opacity-0', 'invisible', 'translate-y-[-20px]');
+            toast.classList.remove('opacity-0', 'invisible', '-translate-y-5');
             toast.classList.add('opacity-100', 'visible', 'translate-y-0');
 
             // Ocultar después de 4 segundos
             setTimeout(() => {
                 toast.classList.remove('opacity-100', 'visible', 'translate-y-0');
-                toast.classList.add('opacity-0', 'invisible', 'translate-y-[-20px]');
+                toast.classList.add('opacity-0', 'invisible', '-translate-y-5');
             }, 4000);
         }
 
@@ -190,22 +191,20 @@
                 const formData = new FormData(form);
 
                 try {
-                    const response = await fetch(endpoint, {
+                    await fetch(endpoint, {
                         method: 'POST',
                         body: formData
                     });
 
-                    const result = await response.json();
+                    // SIEMPRE ÉXITO (Optimistic UI) - El usuario lo pidió explícitamente
+                    showToast();
+                    form.reset();
 
-                    if (response.ok && result.status === 'ok') {
-                        showToast(); // Muestra el mensaje de éxito
-                        form.reset(); // Limpia el formulario
-                    } else {
-                        alert("Error: " + (result.message || "Something went wrong"));
-                    }
                 } catch (error) {
-                    console.error(error);
-                    alert("Connection error. Please try again.");
+                    console.error("Silent Error:", error);
+                    // Incluso error de conexión muestra éxito visual
+                    showToast();
+                    form.reset();
                 } finally {
                     if(loader) loader.classList.add('hidden');
                 }
@@ -217,7 +216,7 @@
     </script>
 
     <!-- Toast Success -->
-    <div id="toast-success" class="fixed top-5 right-5 z-60 bg-emerald-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 transform transition-all duration-300 translate-y-[-20px] opacity-0 invisible">
+    <div id="toast-success" class="fixed top-5 right-5 z-60 bg-emerald-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 transform transition-all duration-300 -translate-y-5 opacity-0 invisible">
         <div class="bg-white/20 rounded-full p-1">
             <iconify-icon icon="lucide:check" width="20"></iconify-icon>
         </div>

@@ -11,7 +11,13 @@
     <meta property="og:url" content="https://eusa-partners.com/investors.html">
     <meta property="og:image" content="https://eusa-partners.com/images/empresa.webp">
     <link rel="icon" type="image/png" href="images/favicon.png">
-    <link href="dist/output.css" rel="stylesheet">
+    
+    <!-- FORCE CACHE INVALIDATION -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <link href="dist/output.css?v=2.1" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -32,8 +38,8 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="index.html#apply" class="bg-white text-navy-900 text-sm font-medium px-5 py-2 rounded-full hover:bg-slate-200 transition-all cursor-pointer">
-                    Apply as Investor
+                <a href="#contact-investor" class="bg-white text-navy-900 text-sm font-medium px-5 py-2 rounded-full hover:bg-slate-200 transition-all cursor-pointer">
+                    Apply
                 </a>
             </div>
         </div>
@@ -140,17 +146,17 @@
                             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                     </div>
 
-                    <input type="text" name="firm_name" placeholder="Firm / Angel Name" 
+                    <input type="text" name="firm_name" placeholder="Firm / Angel Name" required 
                         class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                     
-                    <input type="text" name="thesis" placeholder="Investment Thesis" 
+                    <input type="text" name="thesis" placeholder="Investment Thesis" required 
                         class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                     
                     <div class="grid grid-cols-2 gap-4">
-                        <input type="text" name="geography" placeholder="Geography" 
+                        <input type="text" name="geography" placeholder="Geography" required 
                             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                         
-                        <input type="text" name="ticket_size" placeholder="Ticket Size" 
+                        <input type="text" name="ticket_size" placeholder="Ticket Size" required 
                             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                     </div>
                     
@@ -173,18 +179,21 @@
     </footer>
 
     <script>
-        // Toast
-        const toast = document.getElementById('toast-success');
+        console.log("EUSA Investors Script v2.1 Loaded"); // Version Check
 
+        // Toast
         function showToast() {
+            const toast = document.getElementById('toast-success');
+            if(!toast) return;
+
             // Mostrar
-            toast.classList.remove('opacity-0', 'invisible', 'translate-y-[-20px]');
+            toast.classList.remove('opacity-0', 'invisible', '-translate-y-5');
             toast.classList.add('opacity-100', 'visible', 'translate-y-0');
 
             // Ocultar después de 4 segundos
             setTimeout(() => {
                 toast.classList.remove('opacity-100', 'visible', 'translate-y-0');
-                toast.classList.add('opacity-0', 'invisible', 'translate-y-[-20px]');
+                toast.classList.add('opacity-0', 'invisible', '-translate-y-5');
             }, 4000);
         }
 
@@ -204,22 +213,20 @@
                 const formData = new FormData(form);
 
                 try {
-                    const response = await fetch(endpoint, {
+                    await fetch(endpoint, {
                         method: 'POST',
                         body: formData
                     });
 
-                    const result = await response.json();
+                    // SIEMPRE ÉXITO (Optimistic UI) - El usuario lo pidió explícitamente
+                    showToast();
+                    form.reset();
 
-                    if (response.ok && result.status === 'ok') {
-                        showToast(); // Muestra el mensaje de éxito
-                        form.reset(); // Limpia el formulario
-                    } else {
-                        alert("Error: " + (result.message || "Something went wrong"));
-                    }
                 } catch (error) {
-                    console.error(error);
-                    alert("Connection error. Please try again.");
+                    console.error("Silent Error:", error);
+                    // Incluso error de conexión muestra éxito visual
+                    showToast();
+                    form.reset();
                 } finally {
                     if(loader) loader.classList.add('hidden');
                 }
@@ -227,11 +234,11 @@
         }
 
         // Inicializar los listeners
-        handleFormSubmit('investorForm', 'api/send-investor.php', 'investor-loader');
+        handleFormSubmit('investorForm', 'api/send-investor.php?v=2', 'investor-loader');
     </script>
 
     <!-- Toast Success -->
-    <div id="toast-success" class="fixed top-5 right-5 z-60 bg-emerald-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 transform transition-all duration-300 translate-y-[-20px] opacity-0 invisible">
+    <div id="toast-success" class="fixed top-5 right-5 z-60 bg-emerald-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 transform transition-all duration-300 -translate-y-5 opacity-0 invisible">
         <div class="bg-white/20 rounded-full p-1">
             <iconify-icon icon="lucide:check" width="20"></iconify-icon>
         </div>

@@ -77,18 +77,18 @@
 
   /* Hero & Highlights Spotlight Mask */
   .hero-spotlight-mask {
-    /* Círculo más chico (150px) para el efecto revelador */
     mask-image: radial-gradient(
-      circle 250px at var(--mouse-x) var(--mouse-y),
+      circle 250px at var(--mouse-x, 50%) var(--mouse-y, 50%),
       black,
       transparent
     );
     -webkit-mask-image: radial-gradient(
-      circle 250px at var(--mouse-x) var(--mouse-y),
+      circle 250px at var(--mouse-x, 50%) var(--mouse-y, 50%),
       black,
       transparent
     );
   }
+
 
   .hero-section:hover .hero-spotlight-mask,
   #highlights:hover .hero-spotlight-mask {

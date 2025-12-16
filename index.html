@@ -55,26 +55,28 @@
     </nav>
 
     <section class="w-full pt-32 pb-24 md:pt-48 md:pb-32 flex flex-col items-center text-center relative overflow-hidden hero-section" onmousemove="handleSpotlight(event)">
-        <div class="absolute inset-0 z-0 pointer-events-none bg-white"> 
-            <img 
-                src="images/fondoEmpresarial.jpeg" 
-                alt="Meeting Room" 
-                width="1920" 
-                height="1080"
-                class="w-full h-full object-cover grayscale opacity-20" 
-                fetchpriority="high"
+        <div class="absolute inset-0 z-0 pointer-events-none">
+        <!-- Base SIEMPRE visible (mobile + tablet + desktop) -->
+        <img
+            src="images/fondoEmpresarial.jpeg"
+            alt="Meeting Room"
+            width="1920"
+            height="1080"
+            class="w-full h-full object-cover opacity-20"
+            fetchpriority="high"
+        >
+
+        <!-- Overlay con spotlight SOLO desktop (lg+) -->
+        <div class="absolute inset-0 hero-spotlight-mask hidden lg:block">
+            <img
+            src="images/fondoEmpresarial.jpeg"
+            alt="Meeting Room Revealed"
+            width="1920"
+            height="1080"
+            class="w-full h-full object-cover"
+            fetchpriority="high"
             >
-    
-            <div class="absolute inset-0 w-full h-full hero-spotlight-mask">
-                <img 
-                    src="images/fondoEmpresarial.jpeg" 
-                    alt="Meeting Room Revealed" 
-                    width="1920" 
-                    height="1080"
-                    class="w-full h-full object-cover grayscale opacity-40"
-                    fetchpriority="high"
-                >
-            </div>
+        </div>
         </div>
         
         <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)]"></div>
@@ -82,8 +84,8 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
             <div class="inline-flex gap-2 border border-ui-200 bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full mb-8 items-center animate-fade-up">
                 <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
                 <span class="text-xs font-medium text-slate-600">Applications Now Open</span>
             </div>
@@ -92,8 +94,10 @@
                 Co-Build a Global, <br class="hidden md:block"> Investor-Ready Startup.
             </h1>
             
-            <p class="text-lg md:text-xl text-slate-500 max-w-2xl font-light leading-relaxed mb-12 animate-fade-up delay-200">
-                EUSA is an international venture studio helping founders raise capital, build traction, and launch into the US and EU markets.
+            <p class="text-lg md:text-xl text-slate-700 max-w-2xl font-light leading-relaxed mb-12
+                    transition-colors duration-200
+                    ">
+            EUSA is an international venture studio helping founders raise capital, build traction, and launch into the US and EU markets.
             </p>
             
             <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto animate-fade-up delay-200">
@@ -108,14 +112,16 @@
             </div>
 
             <div class="mt-16 pt-8 border-t border-ui-100 w-full max-w-xs md:max-w-md mx-auto animate-fade-up delay-200">
-                <p class="text-xs text-slate-700 font-medium uppercase tracking-widest text-center">
-                    Backed by founders, operators &amp; investors
+                <p class="text-xs text-slate-700 font-medium uppercase tracking-widest text-center
+                        transition-colors duration-200
+                        ">
+                Backed by founders, operators &amp; investors
                 </p>
             </div>
         </div>
     </section>
 
-<section class="w-full border-t border-ui-100 bg-white py-24" id="highlights">
+    <section class="w-full border-t border-ui-100 bg-white py-24" id="highlights">
         <div class="max-w-7xl mx-auto px-6">
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-ui-200 border border-ui-200 rounded-2xl overflow-hidden shadow-sm">
@@ -215,49 +221,6 @@
                 <p class="text-lg text-slate-500 max-w-xl">Structured support to take you from POC to closing your round.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-8 border border-ui-200 rounded-2xl hover:border-navy-900 hover:shadow-lg transition-all duration-300 group bg-white flex flex-col">
-                    <div class="w-10 h-10 bg-ui-50 rounded-lg flex items-center justify-center text-navy-900 mb-6 group-hover:bg-navy-900 group-hover:text-white transition-colors">
-                        <iconify-icon icon="lucide:handshake" width="20"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-semibold text-navy-900 mb-2">Closing Support</h3>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">End-to-End</p>
-                    <p class="text-sm text-slate-500 leading-relaxed mt-auto">
-                        Warm intros, narrative pitching, diligence management, and legal closing support.
-                    </p>
-                </div>
-
-                <div class="p-8 border border-ui-200 rounded-2xl hover:border-navy-900 hover:shadow-lg transition-all duration-300 group bg-white flex flex-col">
-                    <div class="w-10 h-10 bg-ui-50 rounded-lg flex items-center justify-center text-navy-900 mb-6 group-hover:bg-navy-900 group-hover:text-white transition-colors">
-                        <iconify-icon icon="lucide:zap" width="20"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-semibold text-navy-900 mb-2">Fundraising Sprint</h3>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">12 Weeks</p>
-                    <p class="leading-relaxed text-sm text-slate-500 mt-auto">Build your narrative, financial model, data room, validate market demand, and meet US/EU investors on Demo Day.</p>
-                </div>
-
-                <div class="p-8 border border-ui-200 rounded-2xl hover:border-navy-900 hover:shadow-lg transition-all duration-300 group bg-white flex flex-col">
-                    <div class="w-10 h-10 bg-ui-50 rounded-lg flex items-center justify-center text-navy-900 mb-6 group-hover:bg-navy-900 group-hover:text-white transition-colors">
-                        <iconify-icon icon="lucide:bar-chart-3" width="20"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-semibold text-navy-900 mb-2">Revenue Engine</h3>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Ongoing</p>
-                    <p class="text-sm text-slate-500 leading-relaxed mt-auto">
-                        Build repeatable revenue. ICP definition, GTM playbooks, sales engine setup, and forecasting.
-                    </p>
-                </div>
-
-                <div class="p-8 border border-ui-200 rounded-2xl hover:border-navy-900 hover:shadow-lg transition-all duration-300 group bg-white flex flex-col">
-                    <div class="w-10 h-10 bg-ui-50 rounded-lg flex items-center justify-center text-navy-900 mb-6 group-hover:bg-navy-900 group-hover:text-white transition-colors">
-                        <iconify-icon icon="lucide:users-2" width="20"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-semibold text-navy-900 mb-2">Co-Founder Match</h3>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Network</p>
-                    <p class="text-sm text-slate-500 leading-relaxed mt-auto">
-                        Help assemble the right founding team. We plug gaps in technical or operational leadership.
-                    </p>
-                </div>
-            </div>
             
             <div class="text-center mt-16">
                  <a href="programs.html" class="inline-flex items-center justify-center px-8 py-3 bg-ui-50 text-navy-900 text-sm font-medium rounded-full hover:bg-navy-900 hover:text-white transition-all gap-2" aria-label="Explore Programs">
