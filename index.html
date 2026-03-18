@@ -326,19 +326,21 @@
                             class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
 
                         <div class="grid grid-cols-2 gap-4">
-                            <select name="stage" class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm text-slate-500 focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
+                            <select name="stage" required class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm text-slate-500 focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
                                 <option value="" disabled selected>Current Stage</option>
                                 <option value="Idea">Idea</option>
                                 <option value="MVP/POC">MVP/POC</option>
                                 <option value="Early Traction">Early Traction</option>
                             </select>
 
-                            <input type="text" name="target_raise" placeholder="Target Raise (€)"
+                            <input type="text" name="target_raise" placeholder="Target Raise (€)" required
                                 class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all">
                         </div>
 
-                        <textarea name="blocker" placeholder="What is your biggest blocker?" rows="3"
+                        <textarea name="blocker" placeholder="What is your biggest blocker?" rows="3" required
                                 class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all"></textarea>
+
+                        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
                         <div class="pt-2">
                             <button type="submit" class="w-full py-3 bg-navy-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-all hover:scale-[1.02] transform cursor-pointer flex justify-center items-center gap-2">
@@ -363,19 +365,21 @@
                                 class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                         </div>
 
-                        <input type="text" name="firm_name" placeholder="Firm / Angel Name"
+                        <input type="text" name="firm_name" placeholder="Firm / Angel Name" required
                             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
 
-                        <input type="text" name="thesis" placeholder="Investment Thesis"
+                        <input type="text" name="thesis" placeholder="Investment Thesis" required
                             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
 
                         <div class="grid grid-cols-2 gap-4">
-                            <input type="text" name="geography" placeholder="Geography"
+                            <input type="text" name="geography" placeholder="Geography" required
                                 class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
 
-                            <input type="text" name="ticket_size" placeholder="Ticket Size"
+                            <input type="text" name="ticket_size" placeholder="Ticket Size" required
                                 class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                         </div>
+
+                        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
                         <div class="pt-2">
                             <button type="submit" class="w-full py-3 bg-white text-navy-900 font-medium rounded-lg hover:bg-slate-200 transition-all hover:scale-[1.02] transform cursor-pointer flex justify-center items-center gap-2">
@@ -420,9 +424,10 @@
         }
 
         // Toast
-        const toast = document.getElementById('toast-success');
-
         function showToast() {
+            const toast = document.getElementById('toast-success');
+            if(!toast) return;
+
             // Mostrar
             toast.classList.remove('opacity-0', 'invisible', 'translate-y-[-20px]');
             toast.classList.add('opacity-100', 'visible', 'translate-y-0');
@@ -465,7 +470,11 @@
                     }
                 } catch (error) {
                     console.error(error);
-                    alert("Connection error. Please try again.");
+                    if (!navigator.onLine) {
+                        alert("No internet connection. Please check your network and try again.");
+                    } else {
+                        alert("Connection error. Please try again.");
+                    }
                 } finally {
                     if(loader) loader.classList.add('hidden');
                 }

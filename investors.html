@@ -160,6 +160,8 @@
                             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all">
                     </div>
                     
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                    
                     <div class="pt-2">
                         <button type="submit" class="w-full py-3 bg-white text-navy-900 font-medium rounded-lg hover:bg-slate-200 transition-all hover:scale-[1.02] transform cursor-pointer flex justify-center items-center gap-2">
                             <span>Request Access</span>
@@ -217,20 +219,27 @@
                 const formData = new FormData(form);
 
                 try {
-                    await fetch(endpoint, {
+                    const response = await fetch(endpoint, {
                         method: 'POST',
                         body: formData
                     });
 
-                    // SIEMPRE ÉXITO (Optimistic UI) - El usuario lo pidió explícitamente
-                    showToast();
-                    form.reset();
+                    const data = await response.json();
 
+                    if (response.ok && data.status === "ok") {
+                        showToast(); // Solo mostrar éxito si realmente se envió
+                        form.reset();
+                    } else {
+                        console.error("Error del servidor:", data.message);
+                        alert("There was a problem submitting the form. Please try again."); 
+                    }
                 } catch (error) {
-                    console.error("Silent Error:", error);
-                    // Incluso error de conexión muestra éxito visual
-                    showToast();
-                    form.reset();
+                    console.error("Error de red:", error);
+                    if (!navigator.onLine) {
+                        alert("No internet connection. Please check your network and try again.");
+                    } else {
+                        alert("A connection error occurred. Please try again later.");
+                    }
                 } finally {
                     if(loader) loader.classList.add('hidden');
                 }

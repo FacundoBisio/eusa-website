@@ -140,6 +140,8 @@
                     <textarea name="blocker" placeholder="What is your biggest blocker?" rows="3" required 
                             class="w-full px-4 py-3 bg-ui-50 border border-ui-200 rounded-lg text-sm focus:outline-none focus:border-navy-900 focus:ring-1 focus:ring-navy-900 transition-all"></textarea>
                     
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                    
                     <div class="pt-2">
                         <button type="submit" class="w-full py-3 bg-navy-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-all hover:scale-[1.02] transform cursor-pointer flex justify-center items-center gap-2">
                             <span>Submit Application</span>
@@ -195,20 +197,27 @@
                 const formData = new FormData(form);
 
                 try {
-                    await fetch(endpoint, {
+                    const response = await fetch(endpoint, {
                         method: 'POST',
                         body: formData
                     });
 
-                    // SIEMPRE ÉXITO (Optimistic UI) - El usuario lo pidió explícitamente
-                    showToast();
-                    form.reset();
+                    const data = await response.json();
 
+                    if (response.ok && data.status === "ok") {
+                        showToast(); // Solo mostrar éxito si realmente se envió
+                        form.reset();
+                    } else {
+                        console.error("Error del servidor:", data.message);
+                        alert("There was a problem submitting the form. Please try again."); 
+                    }
                 } catch (error) {
-                    console.error("Silent Error:", error);
-                    // Incluso error de conexión muestra éxito visual
-                    showToast();
-                    form.reset();
+                    console.error("Error de red:", error);
+                    if (!navigator.onLine) {
+                        alert("No internet connection. Please check your network and try again.");
+                    } else {
+                        alert("A connection error occurred. Please try again later.");
+                    }
                 } finally {
                     if(loader) loader.classList.add('hidden');
                 }

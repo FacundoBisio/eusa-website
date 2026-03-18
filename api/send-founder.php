@@ -8,7 +8,10 @@ error_reporting(0);
 ini_set('display_errors', 0);
 
 // Headers cruciales para evitar errores de CORS y procesar bien la respuesta
-header('Access-Control-Allow-Origin: *');
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? rtrim($_SERVER['HTTP_ORIGIN'], '/') : '';
+if (preg_match('/^https?:\/\/(www\.)?eusa-partners\.com$/', $origin) || preg_match('/^http:\/\/localhost(:\d+)?$/', $origin) || preg_match('/^http:\/\/127\.0\.0\.1(:\d+)?$/', $origin)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
 header('Content-Type: application/json; charset=utf-8');
 
 // 1. Verificación de método
@@ -18,13 +21,20 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit;
 }
 
+// Validación Honeypot (Seguridad anti-spam para evitar bots)
+if (!empty($_POST['_honey'])) {
+    http_response_code(400);
+    echo json_encode(["status" => "error", "message" => "Invalid request"]);
+    exit;
+}
+
 // Función helper
 function field($key) {
     return isset($_POST[$key]) ? trim($_POST[$key]) : "";
 }
 
-// 2. Capturamos los campos
-$name         = strip_tags(field("name"));
+// 2. Capturamos los campos y limpiamos (Limpieza de saltos de línea para evitar Header Injection)
+$name         = str_replace(["\r", "\n", "%0A", "%0D"], '', strip_tags(field("name")));
 $email        = filter_var(field("email"), FILTER_SANITIZE_EMAIL);
 $startup_name = strip_tags(field("startup_name"));
 $stage        = strip_tags(field("stage"));
@@ -35,6 +45,13 @@ $blocker      = strip_tags(field("blocker"));
 if ($name === "" || $email === "" || $startup_name === "") {
     http_response_code(400);
     echo json_encode(["status" => "error", "message" => "Missing required fields"]);
+    exit;
+}
+
+// Validación de formato de email
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    echo json_encode(["status" => "error", "message" => "Invalid email format"]);
     exit;
 }
 
